@@ -1,184 +1,289 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Krusit — Berbagi Ide & Inovasi</title>
+    <title>Krusit — Pesan Jajanan by Bagoster</title>
     @vite('resources/css/app.css')
-
-    <style>
-      /* Noise tipis + animasi halus */
-      .noise { 
-        background-image: url('{{ asset('img/noise.png') }}');
-        mix-blend-mode: overlay; opacity:.08; pointer-events:none;
-      }
-      @keyframes float {
-        0%,100% { transform: translateY(0) }
-        50%     { transform: translateY(-6px) }
-      }
-      @keyframes shine {
-        0% { transform: translateX(-150%) }
-        100% { transform: translateX(150%) }
-      }
-      .btn-shine::after{
-        content:""; position:absolute; inset:-2px; 
-        background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.35), transparent 70%);
-        transform: translateX(-150%); filter: blur(0.5px);
-      }
-      .btn-shine:hover::after{ animation: shine .9s ease }
-    </style>
+    <meta name="description" content="Krusit by Bagoster — pesan jajanan rumahan favoritmu, fresh, cepat, dan hemat.">
 </head>
-<body class="min-h-screen bg-gray-950 text-white relative overflow-hidden">
+<body class="relative min-h-screen text-gray-900">
 
-    <!-- Layer: gradient + spotlight -->
-    <div class="absolute inset-0 -z-30">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950"></div>
-        <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-yellow-400/10 blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-40 h-[28rem] w-[28rem] rounded-full bg-amber-300/10 blur-3xl"></div>
-        <div class="noise absolute inset-0"></div>
+    <!-- Background + dekorasi -->
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute inset-0 bg-cover bg-center"
+             style="background-image: url('{{ asset('img/krusit2.png') }}');"></div>
+        <!-- Overlay gradient + blur -->
+        <div class="absolute inset-0 bg-gradient-to-b from-amber-200/70 via-yellow-100/80 to-white/90 backdrop-blur-[2px]"></div>
+
+        <!-- Bokeh dekorasi -->
+        <div class="pointer-events-none absolute -top-16 -right-10 h-72 w-72 rounded-full bg-amber-300/50 blur-3xl"></div>
+        <div class="pointer-events-none absolute bottom-10 -left-10 h-72 w-72 rounded-full bg-yellow-200/60 blur-3xl"></div>
     </div>
 
-    <!-- Layer: background image (opsional) -->
-    <div class="absolute inset-0 -z-20 opacity-[.08] bg-cover bg-center"
-         style="background-image:url('{{ asset('img/krusit2.png') }}')"></div>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/60 backdrop-blur border-b border-black/5">
+        <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+            <a href="{{ url('/') }}" class="flex items-center gap-3">
+                <div class="w-9 h-9 grid place-items-center rounded-xl bg-amber-300/80 ring-1 ring-black/10 shadow-sm">
+                    <!-- Breeze logo (jika ada) -->
+                    <x-application-logo class="w-6 h-6 text-gray-900" />
+                </div>
+                <div class="leading-tight">
+                    <span class="block text-sm tracking-wide text-gray-600">Krusit</span>
+                    <strong class="block -mt-0.5 text-lg">by Bagoster</strong>
+                </div>
+            </a>
 
-    <!-- Navbar sederhana -->
-    <header class="relative z-10">
-      <nav class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3 group">
-            <x-application-logo class="w-9 h-9 text-yellow-300" />
-            <span class="text-xl font-bold tracking-tight group-hover:text-yellow-300 transition">Krusit</span>
-        </a>
-        <div class="flex items-center gap-3">
-            <a href="{{ route('login') }}" class="px-4 py-2 text-sm rounded-xl border border-white/10 hover:border-white/30 hover:bg-white/5 transition">Masuk</a>
-            <a href="{{ route('register') }}" class="relative px-4 py-2 text-sm rounded-xl bg-yellow-400 text-gray-900 font-semibold hover:bg-yellow-300 transition btn-shine overflow-hidden">Daftar</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#menu" class="hover:text-gray-700">Menu</a>
+                <a href="#cara" class="hover:text-gray-700">Cara Pesan</a>
+                <a href="#testimoni" class="hover:text-gray-700">Testimoni</a>
+                <a href="#kontak" class="hover:text-gray-700">Kontak</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="{{ route('login') }}"
+                   class="hidden sm:inline-flex px-4 py-2 rounded-xl font-semibold ring-1 ring-black/10 hover:ring-black/20 bg-white/80 hover:bg-white transition">
+                    Masuk
+                </a>
+                <a href="{{ route('register') }}"
+                   class="inline-flex px-4 py-2 rounded-xl font-semibold shadow-sm bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
+                    Daftar
+                </a>
+            </div>
         </div>
-      </nav>
     </header>
 
     <!-- Hero -->
-    <main class="relative z-10">
-      <section class="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-24">
+    <section class="mx-auto max-w-7xl px-6 pt-14 pb-16 lg:pt-20 lg:pb-20">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
-          <!-- Kiri: copy -->
-          <div class="space-y-6">
-            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
-              <span class="h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
-              Baru! Ruang kolaborasi ide tanpa ribet
-            </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
-              Tempat Ide Tumbuh Menjadi
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">Inovasi</span>
-            </h1>
-            <p class="text-white/80 text-lg leading-relaxed">
-              Bangun prototipe, diskusi, dan validasi ide dalam satu tempat.
-              Krusit membantu tim kreatif bergerak cepat dengan UI simpel dan performa kencang.
-            </p>
+            <div>
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ring-1 ring-black/10 bg-amber-100/70 text-gray-800">
+                    🍢 Fresh • ⚡ Cepat • 💛 Hemat
+                </span>
+                <h1 class="mt-4 text-4xl md:text-5xl font-extrabold leading-tight">
+                    Pesan <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-yellow-400">Jajanan Favorit</span> 
+                    rumahanmu — <span class="whitespace-nowrap">langsung dari Krusit.</span>
+                </h1>
+                <p class="mt-4 text-lg text-gray-700">
+                    Cicipi pilihan jajanan rumahan khas Bagoster: rasa nagih, harga ramah kantong, dikirim cepat ke tempatmu.
+                </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-              <a href="{{ route('register') }}"
-                 class="relative group inline-flex items-center justify-center rounded-2xl px-6 py-3 font-semibold text-gray-900 bg-yellow-300 hover:bg-yellow-200 transition btn-shine overflow-hidden">
-                 Mulai Gratis
-              </a>
-              <a href="{{ route('login') }}"
-                 class="inline-flex items-center justify-center rounded-2xl px-6 py-3 font-semibold border border-white/15 hover:border-white/30 hover:bg-white/5 transition">
-                 Masuk Akun
-              </a>
-            </div>
-
-            <!-- Trust badges -->
-            <div class="flex flex-wrap items-center gap-3 pt-3 text-xs text-white/60">
-              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Aman & Cepat</span>
-              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Realtime Collaboration</span>
-              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">UI Minimalis</span>
-            </div>
-          </div>
-
-          <!-- Kanan: kartu mockup -->
-          <div class="relative">
-            <!-- dekorasi -->
-            <div class="absolute -top-6 -left-6 h-24 w-24 rounded-2xl bg-yellow-400/20 blur-2xl"></div>
-            <div class="absolute -bottom-8 -right-8 h-28 w-28 rounded-2xl bg-amber-300/20 blur-2xl"></div>
-
-            <div class="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl p-5 md:p-6 animate-[float_6s_ease-in-out_infinite]">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="h-9 w-9 rounded-xl bg-yellow-400/20 border border-white/15 flex items-center justify-center">
-                    <x-application-logo class="w-5 h-5 text-yellow-300"/>
-                  </div>
-                  <div>
-                    <p class="text-sm text-white/60">Workspace</p>
-                    <p class="font-semibold">Krusit Studio</p>
-                  </div>
+                <!-- CTA -->
+                <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                    <a href="{{ route('register') }}"
+                       class="px-6 py-3 rounded-2xl font-semibold bg-gray-900 text-amber-300 shadow-sm hover:bg-gray-800 transition">
+                        Mulai Pesan Sekarang
+                    </a>
+                    <a href="#menu"
+                       class="px-6 py-3 rounded-2xl font-semibold ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+                       Lihat Menu
+                    </a>
                 </div>
-                <span class="text-xs px-2 py-1 rounded-lg bg-emerald-400/15 text-emerald-300 border border-emerald-300/20">Online</span>
-              </div>
 
-              <div class="mt-5 grid grid-cols-2 gap-4">
-                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                  <p class="text-xs text-white/60">Ide Aktif</p>
-                  <p class="text-3xl font-extrabold">37</p>
-                </div>
-                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                  <p class="text-xs text-white/60">Kolaborator</p>
-                  <p class="text-3xl font-extrabold">124</p>
-                </div>
-                <div class="col-span-2 rounded-2xl bg-gradient-to-r from-yellow-300/20 to-amber-400/20 border border-white/10 p-4">
-                  <p class="text-sm font-semibold">Sprint Minggu Ini</p>
-                  <div class="mt-2 h-2 w-full rounded-full bg-white/10">
-                    <div class="h-2 rounded-full bg-yellow-300" style="width:68%"></div>
-                  </div>
-                  <p class="mt-2 text-xs text-white/70">Progres 68% • 4 hari tersisa</p>
-                </div>
-              </div>
-
-              <div class="mt-5 flex items-center gap-3">
-                <img src="{{ asset('img/avatar1.png') }}" class="h-8 w-8 rounded-full border border-white/20" alt="A"/>
-                <img src="{{ asset('img/avatar2.png') }}" class="h-8 w-8 rounded-full border border-white/20 -ml-2" alt="B"/>
-                <img src="{{ asset('img/avatar3.png') }}" class="h-8 w-8 rounded-full border border-white/20 -ml-2" alt="C"/>
-                <span class="text-xs text-white/60 ml-1">+20 lainnya berkolaborasi</span>
-              </div>
+                <!-- Search -->
+                <form class="mt-6" action="{{ url('/menu') }}" method="GET">
+                    <label for="q" class="sr-only">Cari jajanan</label>
+                    <div class="flex items-stretch gap-2">
+                        <input id="q" name="q" type="text" placeholder="Cari: cireng, risoles, boba..."
+                               class="w-full px-4 py-3 rounded-xl ring-1 ring-black/10 bg-white/90 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
+                        <button type="submit"
+                                class="px-4 py-3 rounded-xl font-semibold bg-amber-300 ring-1 ring-black/10 hover:bg-amber-200 transition">
+                            Cari
+                        </button>
+                    </div>
+                </form>
             </div>
-          </div>
+
+            <!-- Hero Card -->
+            <div class="relative">
+                <div class="relative mx-auto max-w-md rounded-3xl bg-white/90 backdrop-blur p-4 ring-1 ring-black/10 shadow-lg">
+                    <img src="{{ asset('img/menu-risoles.png') }}" alt="Risoles Keju Lumer"
+                         class="w-full h-60 object-cover rounded-2xl ring-1 ring-black/10">
+                    <div class="mt-4 flex items-start justify-between gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Risoles Keju Lumer</h3>
+                            <p class="text-gray-600 text-sm">Kulit crispy, isian melimpah, cocok untuk semua momen.</p>
+                        </div>
+                        <span class="inline-flex items-center px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp6.000</span>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <a href="{{ route('login') }}"
+                           class="px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
+                            Tambah ke Keranjang
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Section fitur ringkas -->
-        <div class="mt-16 grid md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div class="h-10 w-10 rounded-xl bg-yellow-400/20 border border-white/10 flex items-center justify-center mb-4">
-              <svg viewBox="0 0 24 24" class="h-5 w-5"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 14h-2v-2h2v2Zm0-4h-2V6h2v6Z"/></svg>
+        <!-- Fitur singkat -->
+        <div class="mt-12 grid sm:grid-cols-3 gap-4">
+            <div class="rounded-2xl bg-white/80 ring-1 ring-black/10 p-5">
+                <div class="text-2xl">⏱️</div>
+                <h4 class="mt-2 font-semibold">Proses Cepat</h4>
+                <p class="text-sm text-gray-600">Pesanan diproses segera—pas untuk meeting, arisan, atau ngemil santai.</p>
             </div>
-            <h3 class="font-semibold text-lg mb-2">Ide ke Aksi</h3>
-            <p class="text-white/70">Ubah catatan jadi tugas, timeline, dan prototipe—semua serba cepat.</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div class="h-10 w-10 rounded-xl bg-yellow-400/20 border border-white/10 flex items-center justify-center mb-4">
-              <svg viewBox="0 0 24 24" class="h-5 w-5"><path fill="currentColor" d="M12 3l9 6-9 6-9-6 9-6Zm0 8.197l9 6L12 23l-9-5.803 9-6Z"/></svg>
+            <div class="rounded-2xl bg-white/80 ring-1 ring-black/10 p-5">
+                <div class="text-2xl">🥗</div>
+                <h4 class="mt-2 font-semibold">Selalu Fresh</h4>
+                <p class="text-sm text-gray-600">Dibuat harian dengan bahan pilihan agar rasa tetap konsisten.</p>
             </div>
-            <h3 class="font-semibold text-lg mb-2">Kolaborasi Nyaman</h3>
-            <p class="text-white/70">Komentar, mention, dan status realtime—tanpa tab berantakan.</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <div class="h-10 w-10 rounded-xl bg-yellow-400/20 border border-white/10 flex items-center justify-center mb-4">
-              <svg viewBox="0 0 24 24" class="h-5 w-5"><path fill="currentColor" d="M3 12h18v2H3v-2Zm0-6h18v2H3V6Zm0 12h18v2H3v-2Z"/></svg>
+            <div class="rounded-2xl bg-white/80 ring-1 ring-black/10 p-5">
+                <div class="text-2xl">💸</div>
+                <h4 class="mt-2 font-semibold">Harga Bersahabat</h4>
+                <p class="text-sm text-gray-600">Porsi pas, harga pas—cocok untuk kantong mahasiswa & kantor.</p>
             </div>
-            <h3 class="font-semibold text-lg mb-2">UI Ringkas & Cepat</h3>
-            <p class="text-white/70">Desain minimalis, fokus ke konten. Performa mulus di semua device.</p>
-          </div>
         </div>
-      </section>
-    </main>
+    </section>
+
+    <!-- Menu Preview -->
+    <section id="menu" class="mx-auto max-w-7xl px-6 py-10">
+        <div class="flex items-end justify-between">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-extrabold">Menu Favorit</h2>
+                <p class="text-gray-600 mt-1">Intip beberapa best seller kami. Lengkapnya ada di halaman menu.</p>
+            </div>
+            <a href="{{ url('/menu') }}" class="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+                Lihat Semua
+            </a>
+        </div>
+
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
+                <img src="{{ asset('img/menu-cireng.png') }}" alt="Cireng Bumbu Rujak"
+                     class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
+                <div class="mt-3 flex items-start justify-between">
+                    <div>
+                        <h3 class="font-bold">Cireng Bumbu Rujak</h3>
+                        <p class="text-sm text-gray-600">Gurih kenyal, bumbu pedas-manis nagih.</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp5.000</span>
+                </div>
+                <div class="mt-3">
+                    <a href="{{ route('login') }}"
+                       class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
+                        Pesan
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
+                <img src="{{ asset('img/menu-risoles.png') }}" alt="Risoles Keju Lumer"
+                     class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
+                <div class="mt-3 flex items-start justify-between">
+                    <div>
+                        <h3 class="font-bold">Risoles Keju Lumer</h3>
+                        <p class="text-sm text-gray-600">Crispy di luar, creamy di dalam.</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp6.000</span>
+                </div>
+                <div class="mt-3">
+                    <a href="{{ route('login') }}"
+                       class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
+                        Pesan
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
+                <img src="{{ asset('img/menu-boba.png') }}" alt="Brown Sugar Boba"
+                     class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
+                <div class="mt-3 flex items-start justify-between">
+                    <div>
+                        <h3 class="font-bold">Brown Sugar Boba</h3>
+                        <p class="text-sm text-gray-600">Manis pas, boba lembut, es seger.</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp12.000</span>
+                </div>
+                <div class="mt-3">
+                    <a href="{{ route('login') }}"
+                       class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
+                        Pesan
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <div class="mt-6 sm:hidden">
+            <a href="{{ url('/menu') }}" class="inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+                Lihat Semua Menu
+            </a>
+        </div>
+    </section>
+
+    <!-- Cara Pesan -->
+    <section id="cara" class="mx-auto max-w-7xl px-6 py-12">
+        <h2 class="text-2xl md:text-3xl font-extrabold">Cara Pesan</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <div class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <div class="text-2xl">🛒</div>
+                <h4 class="mt-2 font-semibold">1. Pilih Menu</h4>
+                <p class="text-sm text-gray-600">Telusuri menu, pilih item favorit, lalu klik “Pesan”.</p>
+            </div>
+            <div class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <div class="text-2xl">🧾</div>
+                <h4 class="mt-2 font-semibold">2. Atur Pesanan</h4>
+                <p class="text-sm text-gray-600">Tentukan jumlah & catatan (level pedas, saus, dsb.).</p>
+            </div>
+            <div class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <div class="text-2xl">🚚</div>
+                <h4 class="mt-2 font-semibold">3. Bayar & Nikmati</h4>
+                <p class="text-sm text-gray-600">Selesaikan pembayaran, pesanan segera kami proses & kirim.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section id="testimoni" class="mx-auto max-w-7xl px-6 py-12">
+        <h2 class="text-2xl md:text-3xl font-extrabold">Kata Mereka</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <figure class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <blockquote class="text-sm text-gray-700">“Cirengnya gurih banget, bumbu rujaknya bikin nagih!”</blockquote>
+                <figcaption class="mt-3 text-xs text-gray-500">— Rani, Mahasiswi</figcaption>
+            </figure>
+            <figure class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <blockquote class="text-sm text-gray-700">“Orderan kantor 50 porsi rapi & tepat waktu. Mantap.”</blockquote>
+                <figcaption class="mt-3 text-xs text-gray-500">— Bima, HRD</figcaption>
+            </figure>
+            <figure class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <blockquote class="text-sm text-gray-700">“Risoles kejunya lumer, anak-anak suka semua.”</blockquote>
+                <figcaption class="mt-3 text-xs text-gray-500">— Mira, Ibu Rumah Tangga</figcaption>
+            </figure>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/10">
-      <div class="mx-auto max-w-7xl px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-white/70">
-        <p>&copy; {{ date('Y') }} Krusit. Semua hak cipta.</p>
-        <div class="flex items-center gap-5 text-sm">
-          <a href="#" class="hover:text-white transition">Ketentuan</a>
-          <a href="#" class="hover:text-white transition">Privasi</a>
-          <a href="#" class="hover:text-white transition">Kontak</a>
+    <footer id="kontak" class="mt-6 border-t border-black/5 bg-white/70">
+        <div class="mx-auto max-w-7xl px-6 py-10 grid md:grid-cols-3 gap-6">
+            <div>
+                <h4 class="font-bold">Krusit by Bagoster</h4>
+                <p class="mt-2 text-sm text-gray-600">Jajanan rumahan fresh setiap hari. Cocok untuk event & keseharian.</p>
+            </div>
+            <div>
+                <h4 class="font-bold">Navigasi</h4>
+                <ul class="mt-2 text-sm text-gray-600 space-y-1">
+                    <li><a class="hover:text-gray-800" href="#menu">Menu</a></li>
+                    <li><a class="hover:text-gray-800" href="#cara">Cara Pesan</a></li>
+                    <li><a class="hover:text-gray-800" href="#testimoni">Testimoni</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold">Kontak</h4>
+                <ul class="mt-2 text-sm text-gray-600 space-y-1">
+                    <li>Email: <a class="hover:text-gray-800" href="mailto:hello@krusit.local">hello@krusit.local</a></li>
+                    <li>WhatsApp: <a class="hover:text-gray-800" href="https://wa.me/6281234567890">+62 812-3456-7890</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
+        <div class="text-center text-sm text-gray-600 pb-8">
+            &copy; {{ date('Y') }} Krusit. All rights reserved.
+        </div>
     </footer>
+
 </body>
 </html>
