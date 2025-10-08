@@ -30,8 +30,8 @@
                     <x-application-logo class="w-6 h-6 text-gray-900" />
                 </div>
                 <div class="leading-tight">
-                    <span class="block text-sm tracking-wide text-gray-600">Krusit</span>
-                    <strong class="block -mt-0.5 text-lg">by Bagoster</strong>
+                    <span class="block text-sm tracking-wide text-gray-600">by Bagoster</span>
+                    <strong class="block -mt-0.5 text-lg">Krusit</strong>
                 </div>
             </a>
 
@@ -99,14 +99,14 @@
             <!-- Hero Card -->
             <div class="relative">
                 <div class="relative mx-auto max-w-md rounded-3xl bg-white/90 backdrop-blur p-4 ring-1 ring-black/10 shadow-lg">
-                    <img src="{{ asset('img/menu-risoles.png') }}" alt="Risoles Keju Lumer"
+                    <img src="{{ asset('img/PangsitGoreng.png') }}" alt="Pangsit Goreng"
                          class="w-full h-60 object-cover rounded-2xl ring-1 ring-black/10">
                     <div class="mt-4 flex items-start justify-between gap-4">
                         <div>
                             <h3 class="text-xl font-bold">Pangsit Goreng</h3>
                             <p class="text-gray-600 text-sm">Kulit crispy, isian melimpah, cocok untuk semua momen.</p>
                         </div>
-                        <span class="inline-flex items-center px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp6.000</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp25.000</span>
                     </div>
                     <div class="mt-4 flex justify-end">
                         <a href="{{ route('login') }}"
@@ -145,7 +145,7 @@
                 <h2 class="text-2xl md:text-3xl font-extrabold">Menu Favorit</h2>
                 <p class="text-gray-600 mt-1">Intip beberapa best seller kami. Lengkapnya ada di halaman menu setelah login.</p>
             </div>
-            <a href="{{ url('/register') }}" class="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+            <a href="{{ url('/login') }}" class="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
                 Lihat Semua
             </a>
         </div>
@@ -163,7 +163,7 @@
                     <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp15.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('login') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -172,7 +172,7 @@
 
             <!-- Card 2 -->
             <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
-                <img src="{{ asset('img/Pangsit Goreng.png') }}" alt="Pangsit Goreng"
+                <img src="{{ asset('img/PangsitGoreng.png') }}" alt="Pangsit Goreng"
                      class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
                 <div class="mt-3 flex items-start justify-between">
                     <div>
@@ -182,7 +182,7 @@
                     <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp26.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('login') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -201,7 +201,7 @@
                     <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp25.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('login') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -210,7 +210,7 @@
         </div>
 
         <div class="mt-6 sm:hidden">
-            <a href="{{ url('/register') }}" class="inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+            <a href="{{ url('/login') }}" class="inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
                 Lihat Semua Menu
             </a>
         </div>
