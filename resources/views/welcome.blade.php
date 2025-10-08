@@ -86,7 +86,7 @@
                 <form class="mt-6" action="{{ url('/menu') }}" method="GET">
                     <label for="q" class="sr-only">Cari jajanan</label>
                     <div class="flex items-stretch gap-2">
-                        <input id="q" name="q" type="text" placeholder="Cari: cireng, risoles, boba..."
+                        <input id="q" name="q" type="text" placeholder="Cari: Pangsit Goreng, Cireng, Gohyong..."
                                class="w-full px-4 py-3 rounded-xl ring-1 ring-black/10 bg-white/90 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 transition">
                         <button type="submit"
                                 class="px-4 py-3 rounded-xl font-semibold bg-amber-300 ring-1 ring-black/10 hover:bg-amber-200 transition">
@@ -103,7 +103,7 @@
                          class="w-full h-60 object-cover rounded-2xl ring-1 ring-black/10">
                     <div class="mt-4 flex items-start justify-between gap-4">
                         <div>
-                            <h3 class="text-xl font-bold">Risoles Keju Lumer</h3>
+                            <h3 class="text-xl font-bold">Pangsit Goreng</h3>
                             <p class="text-gray-600 text-sm">Kulit crispy, isian melimpah, cocok untuk semua momen.</p>
                         </div>
                         <span class="inline-flex items-center px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp6.000</span>
@@ -143,9 +143,9 @@
         <div class="flex items-end justify-between">
             <div>
                 <h2 class="text-2xl md:text-3xl font-extrabold">Menu Favorit</h2>
-                <p class="text-gray-600 mt-1">Intip beberapa best seller kami. Lengkapnya ada di halaman menu.</p>
+                <p class="text-gray-600 mt-1">Intip beberapa best seller kami. Lengkapnya ada di halaman menu setelah login.</p>
             </div>
-            <a href="{{ url('/menu') }}" class="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+            <a href="{{ url('/register') }}" class="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
                 Lihat Semua
             </a>
         </div>
@@ -153,17 +153,17 @@
         <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Card 1 -->
             <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
-                <img src="{{ asset('img/menu-cireng.png') }}" alt="Cireng Bumbu Rujak"
+                <img src="{{ asset('img/Cireng.png') }}" alt="Cireng Bumbu Rujak"
                      class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
                 <div class="mt-3 flex items-start justify-between">
                     <div>
                         <h3 class="font-bold">Cireng Bumbu Rujak</h3>
                         <p class="text-sm text-gray-600">Gurih kenyal, bumbu pedas-manis nagih.</p>
                     </div>
-                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp5.000</span>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp15.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('register') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -172,17 +172,17 @@
 
             <!-- Card 2 -->
             <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
-                <img src="{{ asset('img/menu-risoles.png') }}" alt="Risoles Keju Lumer"
+                <img src="{{ asset('img/Pangsit Goreng.png') }}" alt="Pangsit Goreng"
                      class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
                 <div class="mt-3 flex items-start justify-between">
                     <div>
-                        <h3 class="font-bold">Risoles Keju Lumer</h3>
-                        <p class="text-sm text-gray-600">Crispy di luar, creamy di dalam.</p>
+                        <h3 class="font-bold">Pangsit Goreng</h3>
+                        <p class="text-sm text-gray-600">Crispy di luar, padat di dalam.</p>
                     </div>
-                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp6.000</span>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp26.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('register') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -191,17 +191,17 @@
 
             <!-- Card 3 -->
             <article class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-4 shadow-sm">
-                <img src="{{ asset('img/menu-boba.png') }}" alt="Brown Sugar Boba"
+                <img src="{{ asset('img/gohyong.png') }}" alt="Gohyong"
                      class="w-full h-44 object-cover rounded-xl ring-1 ring-black/10">
                 <div class="mt-3 flex items-start justify-between">
                     <div>
-                        <h3 class="font-bold">Brown Sugar Boba</h3>
-                        <p class="text-sm text-gray-600">Manis pas, boba lembut, es seger.</p>
+                        <h3 class="font-bold">Gohyong</h3>
+                        <p class="text-sm text-gray-600">Gurih, Pedes, Cocok di Lidah</p>
                     </div>
-                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp12.000</span>
+                    <span class="px-3 py-1 rounded-xl text-sm font-semibold bg-amber-100 ring-1 ring-black/10">Rp25.000</span>
                 </div>
                 <div class="mt-3">
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('register') }}"
                        class="inline-flex px-4 py-2 rounded-xl font-semibold bg-gray-900 text-amber-300 hover:bg-gray-800 transition">
                         Pesan
                     </a>
@@ -210,7 +210,7 @@
         </div>
 
         <div class="mt-6 sm:hidden">
-            <a href="{{ url('/menu') }}" class="inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
+            <a href="{{ url('/register') }}" class="inline-flex text-sm font-semibold px-4 py-2 rounded-xl ring-1 ring-black/10 bg-white/80 hover:bg-white transition">
                 Lihat Semua Menu
             </a>
         </div>
@@ -220,6 +220,11 @@
     <section id="cara" class="mx-auto max-w-7xl px-6 py-12">
         <h2 class="text-2xl md:text-3xl font-extrabold">Cara Pesan</h2>
         <div class="mt-6 grid md:grid-cols-3 gap-6">
+            <div class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
+                <div class="text-2xl">🛒</div>
+                <h4 class="mt-2 font-semibold">1. Daftarkan diri</h4>
+                <p class="text-sm text-gray-600">Dengan mendaftarkan diri mengunakan email agar dapat mengikuti update dari Krusit.</p>
+            </div>
             <div class="rounded-2xl bg-white/90 ring-1 ring-black/10 p-6">
                 <div class="text-2xl">🛒</div>
                 <h4 class="mt-2 font-semibold">1. Pilih Menu</h4>
@@ -275,7 +280,7 @@
             <div>
                 <h4 class="font-bold">Kontak</h4>
                 <ul class="mt-2 text-sm text-gray-600 space-y-1">
-                    <li>Email: <a class="hover:text-gray-800" href="mailto:hello@krusit.local">hello@krusit.local</a></li>
+                    <li>Email: <a class="hover:text-gray-800" href="mailto:krusitmakassar@gmail.com">krusitmakassar@gmail.com</a></li>
                     <li>WhatsApp: <a class="hover:text-gray-800" href="https://wa.me/6281234567890">+62 812-3456-7890</a></li>
                 </ul>
             </div>
