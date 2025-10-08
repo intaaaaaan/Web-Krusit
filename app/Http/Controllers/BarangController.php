@@ -120,4 +120,134 @@ public function showMinuman()
     $menus = Menu::where('category', 'minuman')->get();
     return view('minuman', compact('menus'));
 }
+
+
+public function apiMakanan()
+{
+    $makanan = menu::where('category', 'makanan')->get();
+    return response()->json([
+        'status' => 'success',
+        'data' => $makanan
+    ]);
+}
+
+public function apiMinuman()
+{
+    $minuman = menu::where('category', 'minuman')->get();
+    return response()->json([
+        'status' => 'success',
+        'data' => $minuman
+    ]);
+}
+public function storeMakanan(Request $request)
+{
+    $request->validate([
+    'name' => 'required|string|max:255',
+    'description' => 'nullable|string',
+    'price' => 'required|numeric',
+]);
+
+    $barang = Menu::create([
+        'name' => $request->name,
+        'description' => $request->description,
+        'category' => 'makanan',
+        'price' => $request->price,
+
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'data' => $barang
+    ], 201);
+}
+
+public function storeMinuman(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric',
+
+    ]);
+
+    $barang = Menu::create([
+        'name' => $request->name,
+        'description' => $request->description,
+        'category' => 'minuman',
+        'price' => $request->price,
+
+    ]);
+
+    return response()->json([
+        'status' => 'success',
+        'data' => $barang
+    ], 201);
+}
+public function apiUpdateMakanan(Request $request, $id)
+{
+    $barang = Menu::findOrFail($id);
+
+    $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'sometimes|required|numeric',
+
+    ]);
+
+    // Update data biasa
+    $barang->name = $request->name ?? $barang->name;
+    $barang->description = $request->description ?? $barang->description;
+    $barang->price = $request->price ?? $barang->price;
+    $barang->category = 'makanan';
+
+    $barang->save();
+    return response()->json([
+        'status' => 'success',
+        'data' => $barang
+    ], 200);
+}
+public function apiDeleteMakanan($id)
+{
+    $barang = Menu::findOrFail($id);
+
+    $barang->delete();
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Barang berhasil dihapus'
+    ], 200);
+}
+public function apiUpdateMinuman(Request $request, $id)
+{
+    $barang = Menu::findOrFail($id);
+
+    $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'sometimes|required|numeric',
+
+    ]);
+
+    // Update data biasa
+    $barang->name = $request->name ?? $barang->name;
+    $barang->description = $request->description ?? $barang->description;
+    $barang->price = $request->price ?? $barang->price;
+    $barang->category = 'minuman';
+
+    $barang->save();
+    return response()->json([
+        'status' => 'success',
+        'data' => $barang
+    ], 200);
+}
+public function apiDeleteMinuman($id)
+{
+    $barang = Menu::findOrFail($id);
+
+    $barang->delete();
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Barang berhasil dihapus'
+    ], 200);
+}
+
 }
