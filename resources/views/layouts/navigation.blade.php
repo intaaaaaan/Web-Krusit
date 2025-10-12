@@ -48,6 +48,41 @@
                         {{ __('Lihat Pesanan') }}
                     </x-nav-link>
 
+                    <!-- API Management (desktop) -->
+                    @php $apiGroups = config('api_groups.groups', []); @endphp
+                    @if (count($apiGroups))
+                        <x-dropdown align="center" width="56">
+                            <x-slot name="trigger">
+                                <button
+                                    class="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold text-black
+                                           transition hover:bg-orange-500/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20">
+                                    {{ __('API Management') }}
+                                    <svg class="ms-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.855a.75.75 0 111.08 1.04l-4.24 4.41a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <div class="bg-white rounded-md shadow-lg max-h-[70vh] overflow-auto">
+                                    @foreach($apiGroups as $slug => $g)
+                                        @php
+                                            $active = request()->routeIs('api-mgmt.page')
+                                                      && optional(request()->route())->parameter('slug') === $slug;
+                                        @endphp
+                                        <x-dropdown-link
+                                            :href="route('api-mgmt.page', $slug)"
+                                            class="block px-4 py-2 text-black hover:bg-gray-100 {{ $active ? 'bg-gray-100 font-medium' : '' }}">
+                                            {{ $g['name'] ?? $slug }}
+                                        </x-dropdown-link>
+                                    @endforeach
+                                </div>
+                            </x-slot>
+                        </x-dropdown>
+                    @endif
+
                     @if (Auth::check() && Auth::user()->role === 'admin')
                         <x-nav-link :href="route('barang.create')" :active="request()->routeIs('barang.create')">
                             {{ __('Tambah Menu') }}
@@ -136,6 +171,27 @@
             <x-responsive-nav-link :href="route('pesanan.index')" :active="request()->routeIs('pesanan.index')">
                 {{ __('Lihat Pesanan') }}
             </x-responsive-nav-link>
+
+            <!-- API Management (mobile) -->
+            @php $apiGroups = config('api_groups.groups', []); @endphp
+            @if (count($apiGroups))
+                <x-responsive-nav-link
+                    :href="route('api-mgmt.page', array_key_first($apiGroups))"
+                    :active="request()->routeIs('api-mgmt.page')">
+                    {{ __('API Management') }}
+                </x-responsive-nav-link>
+                <div class="ms-4">
+                    @foreach($apiGroups as $slug => $g)
+                        @php
+                            $active = request()->routeIs('api-mgmt.page')
+                                      && optional(request()->route())->parameter('slug') === $slug;
+                        @endphp
+                        <x-responsive-nav-link :href="route('api-mgmt.page', $slug)" :active="$active">
+                            {{ '• ' . ($g['name'] ?? $slug) }}
+                        </x-responsive-nav-link>
+                    @endforeach
+                </div>
+            @endif
 
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('barang.create')" :active="request()->routeIs('barang.create')">

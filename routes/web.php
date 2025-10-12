@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ApiCrudController;
 use Illuminate\Support\Facades\Route;
 
 // Welcome page
@@ -37,7 +38,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/pesanan/{id}/approve', [PemesananController::class, 'approve'])->name('pesanan.approve');
 });
 
-// Order routes
+// Api Management
+
+Route::prefix('api-management')->name('api-mgmt.')->group(function () {
+    Route::get('/{slug}',              [ApiCrudController::class, 'page'])->name('page');      // halaman CRUD
+    Route::get('/{slug}/data',         [ApiCrudController::class, 'index'])->name('index');    // READ
+    Route::post('/{slug}/data',        [ApiCrudController::class, 'store'])->name('store');    // CREATE
+    Route::put('/{slug}/data/{id}',    [ApiCrudController::class, 'update'])->name('update');  // UPDATE
+    Route::delete('/{slug}/data/{id}', [ApiCrudController::class, 'destroy'])->name('destroy');// DELETE
+});
+
 
 // Profile management
 Route::middleware('auth')->group(function () {
